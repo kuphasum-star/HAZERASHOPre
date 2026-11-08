@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ช่วยเหลือ & วิธีสั่งงาน | HAZERA SHOP</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #090d0b;
+      color: #f3f4f6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 820px; margin: 0 auto; padding: 0 16px; width: 100%; }
+    .nav-container { max-width: 1024px; margin: 0 auto; padding: 16px; width: 100%; display: flex; justify-content: space-between; align-items: center; }
+
+    nav {
+      border-bottom: 1px solid rgba(16, 185, 129, 0.25);
+      background-color: rgba(12, 19, 16, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .brand { font-size: 1.25rem; font-weight: 700; color: #34d399; letter-spacing: 0.05em; }
+    .nav-links { display: flex; align-items: center; gap: 16px; font-size: 0.875rem; }
+    .nav-links a.link { color: #d1d5db; }
+    .nav-links a.link.active { color: #34d399; font-weight: 600; }
+    .btn-primary-sm {
+      background-color: #10b981;
+      color: #000000;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    main { padding: 48px 16px; flex: 1; }
+    .page-header { text-align: center; margin-bottom: 32px; }
+    .page-header h1 { font-size: 1.875rem; font-weight: 800; color: #ffffff; margin-bottom: 8px; }
+    .page-header p { color: #9ca3af; font-size: 0.875rem; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .step-btn {
+      background-color: #111915;
+      color: #f3f4f6;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .step-btn.active {
+      background-color: #10b981;
+      color: #000000;
+      font-weight: 700;
+    }
+
+    .card {
+      background-color: #111915;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .step-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background-color: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      padding: 4px 12px;
+      border-radius: 9999px;
+    }
+    .channel-tag { font-size: 0.75rem; color: #9ca3af; }
+    .step-title { font-size: 1.25rem; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+    .step-desc { color: #d1d5db; font-size: 0.875rem; margin-bottom: 24px; }
+
+    .discord-embed {
+      background-color: #2b2d31;
+      border-left: 4px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 16px;
+      font-size: 0.875rem;
+    }
+    .bot-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .bot-name { font-weight: 700; color: #ffffff; }
+    .bot-tag { background-color: #5865f2; color: #ffffff; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+    .preview-body { color: #e5e7eb; font-size: 0.8rem; }
+    .preview-body p { margin-bottom: 6px; }
+    .mock-btn-green { display: inline-block; background-color: #248046; color: #ffffff; padding: 5px 12px; border-radius: 4px; font-size: 0.75rem; margin-top: 6px; margin-right: 6px; }
+    .mock-btn-blue { display: inline-block; background-color: #5865f2; color: #ffffff; padding: 5px 12px; border-radius: 4px; font-size: 0.75rem; margin-top: 6px; }
+
+    .card-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #1f2937;
+    }
+    .nav-arrow { background: none; border: none; color: #9ca3af; font-size: 0.75rem; cursor: pointer; padding: 8px 12px; font-family: inherit; }
+    .nav-arrow:hover { color: #ffffff; }
+    .nav-arrow.next { color: #34d399; }
+
+    footer {
+      border-top: 1px solid rgba(16, 185, 129, 0.25);
+      background-color: #0c1310;
+      padding: 24px 16px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="brand">HAZERA SHOP</a>
+      <div class="nav-links">
+        <a href="index.html" class="link">หน้าแรก</a>
+        <a href="support.html" class="link active">ช่วยเหลือ</a>
+        <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="btn-primary-sm">สั่งงานใน Discord</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="page-header">
+      <h1>ช่วยเหลือ & วิธีใช้บริการ</h1>
+      <p>ดูขั้นตอนการสั่งฟาร์มใน Discord ตั้งแต่เติมเงินจนรับงานเสร็จ</p>
+    </div>
+
+    <div class="steps-grid" id="step-buttons">
+      <button onclick="showStep(0)" class="step-btn active">1. เติมเงิน</button>
+      <button onclick="showStep(1)" class="step-btn">2. เลือกบริการ</button>
+      <button onclick="showStep(2)" class="step-btn">3. กรอกรหัสไอดี</button>
+      <button onclick="showStep(3)" class="step-btn">4. ระหว่างฟาร์ม</button>
+      <button onclick="showStep(4)" class="step-btn">5. งานเสร็จ</button>
+    </div>
+
+    <div class="card">
+      <div class="card-meta">
+        <span id="step-badge" class="step-badge">1 / 5</span>
+        <span id="step-channel" class="channel-tag">ห้อง #・จ้างงานฟาร์ม</span>
+      </div>
+      <h2 id="step-title" class="step-title">กดปุ่ม เติมเงิน (ซองอังเปา)</h2>
+      <p id="step-desc" class="step-desc">
+        กดปุ่ม 'เติมเงิน (ซองอังเปา)' ในห้องจ้างงานฟาร์ม กรอกจำนวนเงินและวางลิงก์ซองอังเปา TrueMoney Wallet จากนั้นบอทจะเพิ่มยอดเงินเข้ากระเป๋าของคุณทันทีที่อนุมัติ
+      </p>
+
+      <div class="discord-embed">
+        <div class="bot-header">
+          <span class="bot-name">HAZERASHOP</span>
+          <span class="bot-tag">APP</span>
+        </div>
+        <div id="step-preview" class="preview-body">
+          <p style="font-weight: 700; color: #34d399;">💎 บริการรับฟาร์ม 24 ชม.</p>
+          <p>กดปุ่ม <b>🧧 เติมเงิน (ซองอังเปา)</b> ด้านล่างเพื่อเติมเครดิตเข้าระบบ</p>
+          <div><span class="mock-btn-blue">🧧 เติมเงิน (ซองอังเปา)</span></div>
+        </div>
+      </div>
+
+      <div class="card-nav">
+        <button onclick="prevStep()" class="nav-arrow">← ย้อนกลับ</button>
+        <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="btn-primary-sm" style="font-size: 0.75rem;">
+          ไปสั่งงานใน Discord เลย →
+        </a>
+        <button onclick="nextStep()" class="nav-arrow next">ถัดไป →</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 HAZERA SHOP • <a href="https://discord.gg/xFz5gEbuqz" style="color: #34d399; text-decoration: underline;">เข้าสู่ Discord ร้าน</a>
+  </footer>
+
+  <script>
+    const steps = [
+      {
+        badge: "1 / 5", channel: "ห้อง #・จ้างงานฟาร์ม",
+        title: "กดปุ่ม เติมเงิน (ซองอังเปา)",
+        desc: "กดปุ่ม 'เติมเงิน (ซองอังเปา)' ในห้องจ้างงานฟาร์ม กรอกจำนวนเงินและวางลิงก์ซองอังเปา TrueMoney Wallet จากนั้นบอทจะเพิ่มยอดเงินเข้ากระเป๋าของคุณทันทีที่อนุมัติ",
+        preview: '<p style="font-weight:700;color:#34d399;">💎 บริการรับฟาร์ม 24 ชม.</p><p>กดปุ่ม <b>🧧 เติมเงิน (ซองอังเปา)</b> ด้านล่างเพื่อเติมเครดิตเข้าระบบ</p><div><span class="mock-btn-blue">🧧 เติมเงิน (ซองอังเปา)</span></div>'
+      },
+      {
+        badge: "2 / 5", channel: "ห้อง #・จ้างงานฟาร์ม",
+        title: "กดปุ่ม เลือกบริการ และเลือกแพ็กเกจ",
+        desc: "กดปุ่มสีเขียว 'เลือกบริการ' -> เลือกเกม Anime Adventures -> เลือกแพ็กเกจที่ต้องการ (ฟาร์มเพชร Gem หรือ Summer Hunt Event) และเลือกจำนวน",
+        preview: '<p style="font-weight:700;color:#34d399;">🛒 สั่งจ้างฟาร์ม Roblox</p><p>🎮 เกม: <b>Anime Adventures</b><br>💎 แพ็กเกจ: <b>Gem 10k (1 วัน)</b><br>💰 ยอดรวม: <b>39 บาท</b></p><div><span class="mock-btn-green">✅ กดยืนยันและกรอกรหัส Roblox</span></div>'
+      },
+      {
+        badge: "3 / 5", channel: "หน้าต่างป๊อปอัป (เห็นเฉพาะคุณ)",
+        title: "กรอกชื่อผู้ใช้ รหัสผ่าน และรหัสสำรอง 2FA",
+        desc: "กรอก Username, Password และรหัสสำรอง 2FA (แนะนำให้ใส่รหัสสำรอง 8 หลักเพื่อให้บอทเข้าฟาร์มได้ทันทีโดยไม่ติดยืนยันตัวตน)",
+        preview: '<p style="font-weight:700;color:#34d399;">✅ ส่งออเดอร์สำเร็จ!</p><p>ระบบหักเครดิตและส่งคิวให้แอดมินเริ่มฟาร์มทันที ข้อมูลของคุณปลอดภัยและเห็นเฉพาะแอดมินเท่านั้น</p>'
+      },
+      {
+        badge: "4 / 5", channel: "แจ้งเตือนทางข้อความส่วนตัว (DM)",
+        title: "ระหว่างบอทกำลังฟาร์ม (ห้ามเข้าไอดีซ้อน)",
+        desc: "เมื่อแอดมินกดรับคิว บอทจะส่งข้อความแจ้งเตือนทาง DM ว่าเริ่มฟาร์มแล้ว ⚠️ กรุณาห้ามล็อกอินเข้าเกมซ้อนระหว่างที่บอทกำลังฟาร์ม",
+        preview: '<p style="font-weight:700;color:#38bdf8;">🚀 ออเดอร์ของคุณกำลังเริ่มฟาร์มแล้วครับ!</p><p>⚠️ กรุณางดเข้าไอดีซ้อนจนกว่าจะได้รับแจ้งเตือนงานเสร็จสิ้น</p>'
+      },
+      {
+        badge: "5 / 5", channel: "แจ้งเตือนทางข้อความส่วนตัว (DM)",
+        title: "ฟาร์มเสร็จสิ้น! ตรวจสอบของและเปลี่ยนรหัสผ่าน",
+        desc: "เมื่องานเสร็จ บอทจะทัก DM แจ้งเตือนทันที สามารถเข้าเกมเช็กยอดเพชร/ไอเทม และเปลี่ยนรหัสผ่านเพื่อความปลอดภัยได้เลยครับ",
+        preview: '<p style="font-weight:700;color:#34d399;">🎉 ออเดอร์ของคุณฟาร์มเสร็จสิ้นแล้ว!</p><p>ขอบคุณที่ใช้บริการ HAZERA SHOP อย่าลืมเปลี่ยนรหัสผ่านและรีวิวให้ร้านด้วยนะครับ ⭐</p>'
+      }
+    ];
+    let cur = 0;
+    function showStep(idx) {
+      cur = idx;
+      document.getElementById("step-badge").innerText = steps[idx].badge;
+      document.getElementById("step-channel").innerText = steps[idx].channel;
+      document.getElementById("step-title").innerText = steps[idx].title;
+      document.getElementById("step-desc").innerText = steps[idx].desc;
+      document.getElementById("step-preview").innerHTML = steps[idx].preview;
+      const btns = document.querySelectorAll(".step-btn");
+      for (let i = 0; i < btns.length; i++) {
+        if (i === idx) btns[i].classList.add("active");
+        else btns[i].classList.remove("active");
+      }
+    }
+    function nextStep() { showStep((cur + 1) % steps.length); }
+    function prevStep() { showStep((cur - 1 + steps.length) % steps.length); }
+  </script>
+</body>
+</html>

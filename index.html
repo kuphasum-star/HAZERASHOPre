@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAZERA SHOP | บริการรับฟาร์มเกม Roblox อัตโนมัติ 24 ชม.</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #090d0b;
+      color: #f3f4f6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1024px; margin: 0 auto; padding: 0 16px; width: 100%; }
+    
+    /* Navbar */
+    nav {
+      border-bottom: 1px solid rgba(16, 185, 129, 0.25);
+      background-color: rgba(12, 19, 16, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #34d399;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #34d399;
+      box-shadow: 0 0 10px #34d399;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.875rem;
+    }
+    .nav-links a.link { color: #d1d5db; transition: color 0.2s; }
+    .nav-links a.link:hover { color: #34d399; }
+    .btn-primary-sm {
+      background-color: #10b981;
+      color: #000000;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+    }
+    .btn-primary-sm:hover { background-color: #34d399; }
+
+    /* Hero */
+    header {
+      padding: 56px 16px 48px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background-color: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    h1 span { color: #34d399; }
+    .subtitle {
+      color: #9ca3af;
+      max-width: 580px;
+      margin: 0 auto 32px;
+      font-size: 0.95rem;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+    .btn-hero-main {
+      background-color: #10b981;
+      color: #000000;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.25);
+      transition: all 0.2s;
+    }
+    .btn-hero-main:hover { background-color: #34d399; transform: translateY(-1px); }
+    .btn-hero-sec {
+      background-color: #121c17;
+      color: #34d399;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+    .btn-hero-sec:hover { background-color: #192620; }
+
+    /* Sections */
+    section { padding: 32px 0; }
+    .sec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .sec-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .live-tag {
+      font-size: 0.75rem;
+      color: #34d399;
+      background-color: rgba(16, 185, 129, 0.12);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background-color: #111915;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .game-label { font-size: 0.75rem; color: #34d399; font-weight: 600; }
+    .order-title { color: #ffffff; font-weight: 700; font-size: 1rem; margin-top: 2px; }
+    .pct { color: #34d399; font-weight: 700; font-size: 0.875rem; }
+    .bar-bg { width: 100%; background-color: #1f2937; border-radius: 9999px; height: 10px; overflow: hidden; }
+    .bar-fill { background-color: #34d399; height: 10px; border-radius: 9999px; }
+
+    .recent-banner {
+      margin-top: 16px;
+      background-color: #0e1512;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 12px;
+      padding: 14px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+    }
+    .tag-recent {
+      background-color: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+
+    /* Stats */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      text-align: center;
+    }
+    .stat-num { font-size: 1.75rem; font-weight: 800; color: #34d399; }
+    .stat-num.white { color: #ffffff; }
+    .stat-label { font-size: 0.75rem; color: #9ca3af; margin-top: 4px; }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid rgba(16, 185, 129, 0.25);
+      background-color: #0c1310;
+      padding: 32px 0;
+      font-size: 0.875rem;
+      color: #9ca3af;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .copyright {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #4b5563;
+      margin-top: 24px;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.75rem; }
+      .nav-links a.link { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <span class="dot"></span> HAZERA SHOP
+      </a>
+      <div class="nav-links">
+        <a href="#queue" class="link">สถานะการฟาร์ม</a>
+        <a href="support.html" class="link">ช่วยเหลือ</a>
+        <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="btn-primary-sm">สั่งงานใน Discord</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container">
+    <span class="badge">⚡ เปิดให้บริการอัตโนมัติ 24 ชม. • เรทถูกที่สุดในไทย เริ่มต้น 39.-</span>
+    <h1>เปลี่ยนเวลาฟาร์ม <span>ให้เป็นเวลาของคุณ</span></h1>
+    <p class="subtitle">
+      ไม่ต้องเสียเวลาเปิดจอฟาร์มเอง ให้ HAZERA SHOP จัดการแทน ปลอดภัย 100% สั่งงานง่ายผ่านระบบบอท Discord ตลอด 24 ชั่วโมง
+    </p>
+    <div class="hero-btns">
+      <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="btn-hero-main">🚀 สั่งงานใน Discord</a>
+      <a href="support.html" class="btn-hero-sec">📖 วิธีสั่งงาน (Support)</a>
+    </div>
+  </header>
+
+  <section id="queue" class="container">
+    <div class="sec-header">
+      <h2 class="sec-title"><span class="dot"></span> งานจริงที่กำลังฟาร์มตอนนี้</h2>
+      <span class="live-tag">อัปเดตเรียลไทม์</span>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <div class="game-label">Anime Adventures</div>
+            <div class="order-title">Ha***er — Summer Hunt (1 วัน)</div>
+          </div>
+          <span class="pct">80%</span>
+        </div>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 80%;"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <div class="game-label">Anime Adventures</div>
+            <div class="order-title">Su***on — Gem 30k (3 วัน)</div>
+          </div>
+          <span class="pct">55%</span>
+        </div>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width: 55%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recent-banner">
+      <div>
+        <span class="tag-recent">ออเดอร์ล่าสุด</span>
+        <span style="color: #d1d5db;"><b>Ki***99</b> สั่งฟาร์ม <b>Gem 10k (1 วัน)</b> • Anime Adventures</span>
+      </div>
+      <span style="color: #34d399; font-weight: 700;">฿ 39.-</span>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="grid-4">
+      <div class="card">
+        <div class="stat-num">12</div>
+        <div class="stat-label">กำลังฟาร์ม</div>
+      </div>
+      <div class="card">
+        <div class="stat-num white">450+</div>
+        <div class="stat-label">ออเดอร์สำเร็จ</div>
+      </div>
+      <div class="card">
+        <div class="stat-num white">280+</div>
+        <div class="stat-label">ลูกค้าไว้วางใจ</div>
+      </div>
+      <div class="card">
+        <div class="stat-num">24 ชม.</div>
+        <div class="stat-label">เปิดให้บริการ</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <div style="color: #ffffff; font-weight: 700; font-size: 1rem; margin-bottom: 4px;">HAZERA SHOP</div>
+        <p style="font-size: 0.75rem;">เกมที่รับฟาร์ม: Anime Adventures (Gem 10k-100k, Summer Hunt Event)</p>
+      </div>
+      <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="btn-primary-sm" style="padding: 10px 20px;">
+        เข้าสู่ Discord ร้าน HAZERA SHOP
+      </a>
+    </div>
+    <div class="copyright">© 2026 HAZERA SHOP. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
