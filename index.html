@@ -113,9 +113,11 @@
       </div>
 
       <div id="admin-login-box">
-        <label class="text-xs text-gray-400 block mb-1">กรอกรหัสผ่านแอดมิน (เริ่มต้น: hazera1234)</label>
-        <input id="admin-pass" type="password" placeholder="รหัสผ่านแอดมิน" class="w-full bg-black/50 border border-emerald-800 rounded-lg px-3 py-2 text-sm text-white mb-3">
-        <button onclick="checkAdmin()" class="w-full bg-emerald-500 text-black font-bold py-2 rounded-lg text-sm">เข้าสู่ระบบจัดการ</button>
+        <label class="text-xs text-gray-400 block mb-1">ชื่อผู้ใช้งานแอดมิน</label>
+        <input id="admin-user" type="text" placeholder="กรอกชื่อผู้ใช้งาน" class="w-full bg-black/50 border border-emerald-800 rounded-lg px-3 py-2 text-sm text-white mb-3">
+        <label class="text-xs text-gray-400 block mb-1">รหัสผ่านแอดมิน</label>
+        <input id="admin-pass" type="password" placeholder="กรอกรหัสผ่าน" class="w-full bg-black/50 border border-emerald-800 rounded-lg px-3 py-2 text-sm text-white mb-4">
+        <button onclick="checkAdmin()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-2.5 rounded-lg text-sm transition">เข้าสู่ระบบจัดการ</button>
       </div>
 
       <div id="admin-panel-box" class="hidden space-y-4">
@@ -193,10 +195,14 @@
     function openAdminModal() { document.getElementById("admin-modal").classList.replace("hidden", "flex"); }
     function closeAdminModal() { document.getElementById("admin-modal").classList.replace("flex", "hidden"); }
     function checkAdmin() {
-      if (document.getElementById("admin-pass").value === "hazera1234") {
+      const u = document.getElementById("admin-user").value.trim();
+      const p = document.getElementById("admin-pass").value.trim();
+      if (u === "hazera999" && p === "hazera999") {
         document.getElementById("admin-login-box").classList.add("hidden");
         document.getElementById("admin-panel-box").classList.remove("hidden");
-      } else { alert("รหัสผ่านไม่ถูกต้อง!"); }
+      } else {
+        alert("ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง!");
+      }
     }
     function addJob() {
       const jobs = getJobs();
