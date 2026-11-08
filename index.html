@@ -4,335 +4,226 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HAZERA SHOP | บริการรับฟาร์มเกม Roblox อัตโนมัติ 24 ชม.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-color: #090d0b;
-      color: #f3f4f6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.6;
-    }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1024px; margin: 0 auto; padding: 0 16px; width: 100%; }
-    
-    /* Navbar */
-    nav {
-      border-bottom: 1px solid rgba(16, 185, 129, 0.25);
-      background-color: rgba(12, 19, 16, 0.95);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-    .nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 0;
-    }
-    .brand {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #34d399;
-      letter-spacing: 0.05em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: #34d399;
-      box-shadow: 0 0 10px #34d399;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 0.875rem;
-    }
-    .nav-links a.link { color: #d1d5db; transition: color 0.2s; }
-    .nav-links a.link:hover { color: #34d399; }
-    .btn-primary-sm {
-      background-color: #10b981;
-      color: #000000;
-      font-weight: 700;
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: background-color 0.2s;
-    }
-    .btn-primary-sm:hover { background-color: #34d399; }
-
-    /* Hero */
-    header {
-      padding: 56px 16px 48px;
-      text-align: center;
-    }
-    .badge {
-      display: inline-block;
-      background-color: rgba(16, 185, 129, 0.12);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 9999px;
-      margin-bottom: 16px;
-    }
-    h1 {
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.25;
-      margin-bottom: 16px;
-    }
-    h1 span { color: #34d399; }
-    .subtitle {
-      color: #9ca3af;
-      max-width: 580px;
-      margin: 0 auto 32px;
-      font-size: 0.95rem;
-    }
-    .hero-btns {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-    }
-    .btn-hero-main {
-      background-color: #10b981;
-      color: #000000;
-      font-weight: 700;
-      padding: 14px 28px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.25);
-      transition: all 0.2s;
-    }
-    .btn-hero-main:hover { background-color: #34d399; transform: translateY(-1px); }
-    .btn-hero-sec {
-      background-color: #121c17;
-      color: #34d399;
-      border: 1px solid rgba(0, 255, 136, 0.3);
-      font-weight: 600;
-      padding: 14px 28px;
-      border-radius: 12px;
-      transition: all 0.2s;
-    }
-    .btn-hero-sec:hover { background-color: #192620; }
-
-    /* Sections */
-    section { padding: 32px 0; }
-    .sec-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .sec-title {
-      font-size: 1.125rem;
-      font-weight: 700;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .live-tag {
-      font-size: 0.75rem;
-      color: #34d399;
-      background-color: rgba(16, 185, 129, 0.12);
-      padding: 4px 10px;
-      border-radius: 6px;
-    }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-    .card {
-      background-color: #111915;
-      border: 1px solid rgba(0, 255, 136, 0.3);
-      border-radius: 12px;
-      padding: 20px;
-    }
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-    .game-label { font-size: 0.75rem; color: #34d399; font-weight: 600; }
-    .order-title { color: #ffffff; font-weight: 700; font-size: 1rem; margin-top: 2px; }
-    .pct { color: #34d399; font-weight: 700; font-size: 0.875rem; }
-    .bar-bg { width: 100%; background-color: #1f2937; border-radius: 9999px; height: 10px; overflow: hidden; }
-    .bar-fill { background-color: #34d399; height: 10px; border-radius: 9999px; }
-
-    .recent-banner {
-      margin-top: 16px;
-      background-color: #0e1512;
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      border-radius: 12px;
-      padding: 14px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.875rem;
-    }
-    .tag-recent {
-      background-color: rgba(16, 185, 129, 0.2);
-      color: #34d399;
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-right: 6px;
-    }
-
-    /* Stats */
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 16px;
-      text-align: center;
-    }
-    .stat-num { font-size: 1.75rem; font-weight: 800; color: #34d399; }
-    .stat-num.white { color: #ffffff; }
-    .stat-label { font-size: 0.75rem; color: #9ca3af; margin-top: 4px; }
-
-    /* Footer */
-    footer {
-      margin-top: auto;
-      border-top: 1px solid rgba(16, 185, 129, 0.25);
-      background-color: #0c1310;
-      padding: 32px 0;
-      font-size: 0.875rem;
-      color: #9ca3af;
-    }
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-    .copyright {
-      text-align: center;
-      font-size: 0.75rem;
-      color: #4b5563;
-      margin-top: 24px;
-    }
-    @media (max-width: 600px) {
-      h1 { font-size: 1.75rem; }
-      .nav-links a.link { display: none; }
-    }
+    body { font-family: 'Prompt', sans-serif; background-color: #070b09; color: #f3f4f6; }
+    .glass { background: rgba(16, 25, 21, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(16, 185, 129, 0.25); }
+    .glow { box-shadow: 0 0 25px rgba(16, 185, 129, 0.25); }
   </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
 
-  <nav>
-    <div class="container nav-inner">
-      <a href="index.html" class="brand">
-        <span class="dot"></span> HAZERA SHOP
+  <!-- Navbar -->
+  <nav class="border-b border-emerald-900/40 bg-[#0a100d]/90 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-5xl mx-auto px-4 py-3.5 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-emerald-400 tracking-wider flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span> HAZERA SHOP
       </a>
-      <div class="nav-links">
-        <a href="#queue" class="link">สถานะการฟาร์ม</a>
-        <a href="support.html" class="link">ช่วยเหลือ</a>
-        <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="btn-primary-sm">สั่งงานใน Discord</a>
+      <div class="flex items-center gap-3 text-xs sm:text-sm">
+        <a href="#live-jobs" class="text-gray-300 hover:text-emerald-400">สถานะการฟาร์ม</a>
+        <a href="support.html" class="text-gray-300 hover:text-emerald-400">ช่วยเหลือ</a>
+        <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-3.5 py-2 rounded-lg transition">
+          สั่งงานใน Discord
+        </a>
       </div>
     </div>
   </nav>
 
-  <header class="container">
-    <span class="badge">⚡ เปิดให้บริการอัตโนมัติ 24 ชม. • เรทถูกที่สุดในไทย เริ่มต้น 39.-</span>
-    <h1>เปลี่ยนเวลาฟาร์ม <span>ให้เป็นเวลาของคุณ</span></h1>
-    <p class="subtitle">
-      ไม่ต้องเสียเวลาเปิดจอฟาร์มเอง ให้ HAZERA SHOP จัดการแทน ปลอดภัย 100% สั่งงานง่ายผ่านระบบบอท Discord ตลอด 24 ชั่วโมง
+  <!-- Hero -->
+  <header class="max-w-5xl mx-auto px-4 pt-12 pb-8 text-center">
+    <span class="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-semibold px-3.5 py-1 rounded-full mb-4">
+      ⚡ ระบบติดตามความคืบหน้าการฟาร์มแบบเรียลไทม์ 24 ชม.
+    </span>
+    <h1 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-3">
+      เปลี่ยนเวลาฟาร์ม <span class="text-emerald-400">ให้เป็นเวลาของคุณ</span>
+    </h1>
+    <p class="text-gray-400 max-w-xl mx-auto text-sm mb-7">
+      ไม่ต้องเสียเวลาฟาร์มเอง ให้ HAZERA SHOP จัดการแทน พร้อมระบบติดตามความคืบหน้าของไอดีแบบเรียลไทม์
     </p>
-    <div class="hero-btns">
-      <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="btn-hero-main">🚀 สั่งงานใน Discord</a>
-      <a href="support.html" class="btn-hero-sec">📖 วิธีสั่งงาน (Support)</a>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-6 py-3 rounded-xl glow transition text-sm">
+        🚀 สั่งงานใน Discord
+      </a>
+      <a href="#live-jobs" class="glass hover:border-emerald-400 text-emerald-400 font-semibold px-6 py-3 rounded-xl transition text-sm">
+        📡 ดูสถานะการฟาร์ม
+      </a>
     </div>
   </header>
 
-  <section id="queue" class="container">
-    <div class="sec-header">
-      <h2 class="sec-title"><span class="dot"></span> งานจริงที่กำลังฟาร์มตอนนี้</h2>
-      <span class="live-tag">อัปเดตเรียลไทม์</span>
+  <!-- Live Jobs Grid -->
+  <section id="live-jobs" class="max-w-5xl mx-auto px-4 py-6 w-full">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span> งานจริงที่กำลังฟาร์มตอนนี้
+      </h2>
+      <span class="text-xs text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">
+        อัปเดตสด
+      </span>
     </div>
 
-    <div class="grid-2">
-      <div class="card">
-        <div class="card-top">
-          <div>
-            <div class="game-label">Anime Adventures</div>
-            <div class="order-title">Ha***er — Summer Hunt (1 วัน)</div>
-          </div>
-          <span class="pct">80%</span>
-        </div>
-        <div class="bar-bg">
-          <div class="bar-fill" style="width: 80%;"></div>
-        </div>
-      </div>
+    <div id="jobs-container" class="grid md:grid-cols-2 gap-4"></div>
 
-      <div class="card">
-        <div class="card-top">
-          <div>
-            <div class="game-label">Anime Adventures</div>
-            <div class="order-title">Su***on — Gem 30k (3 วัน)</div>
-          </div>
-          <span class="pct">55%</span>
-        </div>
-        <div class="bar-bg">
-          <div class="bar-fill" style="width: 55%;"></div>
-        </div>
+    <!-- Latest Order Bar -->
+    <div class="mt-4 glass rounded-xl px-4 py-3 flex flex-wrap justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center gap-2">
+        <span class="bg-emerald-500/20 text-emerald-400 font-semibold px-2 py-0.5 rounded">ออเดอร์ล่าสุด</span>
+        <span id="latest-order-text" class="text-gray-200"><b>Anime Adventures</b> • <b>Yu***18</b> สั่ง <b>Summer Hunt 1 วัน</b></span>
       </div>
-    </div>
-
-    <div class="recent-banner">
-      <div>
-        <span class="tag-recent">ออเดอร์ล่าสุด</span>
-        <span style="color: #d1d5db;"><b>Ki***99</b> สั่งฟาร์ม <b>Gem 10k (1 วัน)</b> • Anime Adventures</span>
-      </div>
-      <span style="color: #34d399; font-weight: 700;">฿ 39.-</span>
+      <span id="latest-order-price" class="text-emerald-400 font-bold">฿ 49.-</span>
     </div>
   </section>
 
-  <section class="container">
-    <div class="grid-4">
-      <div class="card">
-        <div class="stat-num">12</div>
-        <div class="stat-label">กำลังฟาร์ม</div>
+  <!-- Stats -->
+  <section class="max-w-5xl mx-auto px-4 py-6 w-full">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+      <div class="glass rounded-xl p-4">
+        <div id="stat-farming" class="text-2xl sm:text-3xl font-bold text-emerald-400">14</div>
+        <div class="text-xs text-gray-400 mt-1">กำลังฟาร์ม</div>
       </div>
-      <div class="card">
-        <div class="stat-num white">450+</div>
-        <div class="stat-label">ออเดอร์สำเร็จ</div>
+      <div class="glass rounded-xl p-4">
+        <div id="stat-orders" class="text-2xl sm:text-3xl font-bold text-white">482</div>
+        <div class="text-xs text-gray-400 mt-1">ออเดอร์สำเร็จ</div>
       </div>
-      <div class="card">
-        <div class="stat-num white">280+</div>
-        <div class="stat-label">ลูกค้าไว้วางใจ</div>
+      <div class="glass rounded-xl p-4">
+        <div id="stat-clients" class="text-2xl sm:text-3xl font-bold text-white">295</div>
+        <div class="text-xs text-gray-400 mt-1">ลูกค้าไว้วางใจ</div>
       </div>
-      <div class="card">
-        <div class="stat-num">24 ชม.</div>
-        <div class="stat-label">เปิดให้บริการ</div>
+      <div class="glass rounded-xl p-4">
+        <div id="stat-days" class="text-2xl sm:text-3xl font-bold text-emerald-400">24 ชม.</div>
+        <div class="text-xs text-gray-400 mt-1">เปิดให้บริการ</div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="container footer-inner">
-      <div>
-        <div style="color: #ffffff; font-weight: 700; font-size: 1rem; margin-bottom: 4px;">HAZERA SHOP</div>
-        <p style="font-size: 0.75rem;">เกมที่รับฟาร์ม: Anime Adventures (Gem 10k-100k, Summer Hunt Event)</p>
-      </div>
-      <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="btn-primary-sm" style="padding: 10px 20px;">
-        เข้าสู่ Discord ร้าน HAZERA SHOP
-      </a>
-    </div>
-    <div class="copyright">© 2026 HAZERA SHOP. All rights reserved.</div>
+  <!-- Footer -->
+  <footer class="mt-auto border-t border-emerald-900/40 bg-[#0a100d] py-6 text-center text-xs text-gray-500">
+    <p>© 2026 HAZERA SHOP | บริการรับฟาร์มเกม Roblox อัตโนมัติ 24 ชม.</p>
+    <button onclick="openAdminModal()" class="mt-3 text-gray-600 hover:text-emerald-400 underline">
+      ⚙️ จัดการคิวงาน (Admin)
+    </button>
   </footer>
 
+  <!-- Admin Modal -->
+  <div id="admin-modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4">
+    <div class="glass rounded-2xl max-w-md w-full p-6 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-bold text-emerald-400">⚙️ แผงควบคุมแอดมิน HAZERA SHOP</h3>
+        <button onclick="closeAdminModal()" class="text-gray-400 hover:text-white text-xl">&times;</button>
+      </div>
+
+      <div id="admin-login-box">
+        <label class="text-xs text-gray-400 block mb-1">กรอกรหัสผ่านแอดมิน (เริ่มต้น: hazera1234)</label>
+        <input id="admin-pass" type="password" placeholder="รหัสผ่านแอดมิน" class="w-full bg-black/50 border border-emerald-800 rounded-lg px-3 py-2 text-sm text-white mb-3">
+        <button onclick="checkAdmin()" class="w-full bg-emerald-500 text-black font-bold py-2 rounded-lg text-sm">เข้าสู่ระบบจัดการ</button>
+      </div>
+
+      <div id="admin-panel-box" class="hidden space-y-4">
+        <div class="border-b border-gray-800 pb-3">
+          <h4 class="text-sm font-bold text-white mb-2">➕ เพิ่มคิวงานกำลังฟาร์ม</h4>
+          <input id="in-user" type="text" placeholder="ชื่อลูกค้า (เช่น Ha***er)" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white mb-2">
+          <input id="in-pkg" type="text" placeholder="แพ็กเกจ (เช่น Summer Hunt 1 วัน)" class="w-full bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white mb-2">
+          <div class="grid grid-cols-2 gap-2 mb-2">
+            <input id="in-pct" type="number" placeholder="เปอร์เซ็นต์ (เช่น 45)" class="bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white">
+            <input id="in-goal" type="text" placeholder="เป้าหมาย (เช่น 50,000 เพชร)" class="bg-black/50 border border-gray-700 rounded-lg px-3 py-2 text-xs text-white">
+          </div>
+          <button onclick="addJob()" class="w-full bg-emerald-500 text-black font-bold py-2 rounded-lg text-xs">เพิ่มคิวงานขึ้นหน้าเว็บ</button>
+        </div>
+
+        <div>
+          <h4 class="text-sm font-bold text-white mb-2">📋 อัปเดตเปอร์เซ็นต์คิวงานปัจจุบัน</h4>
+          <div id="admin-job-list" class="space-y-2 text-xs"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const defaultJobs = [
+      { id: "HZ-101", game: "Anime Adventures", user: "Yu***18", pkg: "Summer Hunt 1 วัน", pct: 39, start: "12,400 เพชร", current: "31,900 เพชร", goal: "60,000 เพชร", status: "กำลังลงด่าน Summer Hunt อัตโนมัติ" },
+      { id: "HZ-102", game: "Anime Adventures", user: "Ha***er", pkg: "Gem 30k (3 วัน)", pct: 78, start: "5,000 เพชร", current: "28,400 เพชร", goal: "35,000 เพชร", status: "กำลังฟาร์ม Infinite Mode" }
+    ];
+
+    function getJobs() {
+      return JSON.parse(localStorage.getItem("hazera_jobs")) || defaultJobs;
+    }
+    function saveJobs(jobs) {
+      localStorage.setItem("hazera_jobs", JSON.stringify(jobs));
+      renderJobs();
+    }
+
+    function renderJobs() {
+      const jobs = getJobs();
+      const box = document.getElementById("jobs-container");
+      box.innerHTML = jobs.map((j, idx) => `
+        <div class="glass rounded-xl p-5 hover:border-emerald-400/60 transition">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <span class="text-xs text-emerald-400 font-semibold">${j.game}</span>
+              <h3 class="text-white font-bold text-base">${j.user}</h3>
+              <p class="text-xs text-gray-400">${j.pkg}</p>
+            </div>
+            <div class="text-right">
+              <div class="text-emerald-400 font-bold text-lg">${j.pct}%</div>
+              <a href="track.html?id=${idx}" class="inline-block mt-1 text-xs bg-emerald-500/20 hover:bg-emerald-500 hover:text-black text-emerald-300 border border-emerald-500/40 px-2.5 py-1 rounded-md transition font-semibold">
+                ดูหน้างานนี้ →
+              </a>
+            </div>
+          </div>
+          <div class="w-full bg-gray-800/90 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-gradient-to-r from-emerald-500 to-teal-300 h-2.5 rounded-full transition-all duration-500" style="width: ${j.pct}%"></div>
+          </div>
+        </div>
+      `).join("");
+
+      const adminList = document.getElementById("admin-job-list");
+      if (adminList) {
+        adminList.innerHTML = jobs.map((j, idx) => `
+          <div class="bg-black/40 border border-gray-800 p-2.5 rounded-lg flex justify-between items-center">
+            <div><b>${j.user}</b> (${j.pkg}) — <span class="text-emerald-400">${j.pct}%</span></div>
+            <div class="flex gap-1">
+              <button onclick="updatePct(${idx}, 10)" class="bg-emerald-600 text-white px-2 py-1 rounded">+10%</button>
+              <button onclick="delJob(${idx})" class="bg-red-600 text-white px-2 py-1 rounded">ลบ</button>
+            </div>
+          </div>
+        `).join("");
+      }
+    }
+
+    function openAdminModal() { document.getElementById("admin-modal").classList.replace("hidden", "flex"); }
+    function closeAdminModal() { document.getElementById("admin-modal").classList.replace("flex", "hidden"); }
+    function checkAdmin() {
+      if (document.getElementById("admin-pass").value === "hazera1234") {
+        document.getElementById("admin-login-box").classList.add("hidden");
+        document.getElementById("admin-panel-box").classList.remove("hidden");
+      } else { alert("รหัสผ่านไม่ถูกต้อง!"); }
+    }
+    function addJob() {
+      const jobs = getJobs();
+      jobs.unshift({
+        id: "HZ-" + Math.floor(100 + Math.random() * 900),
+        game: "Anime Adventures",
+        user: document.getElementById("in-user").value || "Cu***er",
+        pkg: document.getElementById("in-pkg").value || "Summer Hunt 1 วัน",
+        pct: Math.min(100, Math.max(0, parseInt(document.getElementById("in-pct").value) || 10)),
+        start: "เริ่มต้น", current: "กำลังฟาร์ม",
+        goal: document.getElementById("in-goal").value || "ตามแพ็กเกจ",
+        status: "บอทกำลังทำงานอัตโนมัติ 24 ชม."
+      });
+      saveJobs(jobs);
+    }
+    function updatePct(idx, add) {
+      const jobs = getJobs();
+      jobs[idx].pct = Math.min(100, jobs[idx].pct + add);
+      saveJobs(jobs);
+    }
+    function delJob(idx) {
+      const jobs = getJobs();
+      jobs.splice(idx, 1);
+      saveJobs(jobs);
+    }
+
+    renderJobs();
+  </script>
 </body>
 </html>

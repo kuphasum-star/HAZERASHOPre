@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ติดตามสถานะการฟาร์ม | HAZERA SHOP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Prompt', sans-serif; background-color: #070b09; color: #f3f4f6; }
+    .glass { background: rgba(16, 25, 21, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(16, 185, 129, 0.25); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="border-b border-emerald-900/40 bg-[#0a100d]/90 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-3xl mx-auto px-4 py-3.5 flex justify-between items-center">
+      <a href="index.html" class="text-lg font-bold text-emerald-400">← กลับหน้าหลัก HAZERA SHOP</a>
+      <a href="https://discord.gg/xFz5gEbuqz" target="_blank" class="bg-emerald-500 text-black font-bold px-3.5 py-1.5 rounded-lg text-xs">
+        Discord ร้าน
+      </a>
+    </div>
+  </nav>
+
+  <!-- Tracking Card -->
+  <main class="max-w-3xl mx-auto px-4 py-10 w-full flex-1">
+    <div class="glass rounded-2xl p-6 sm:p-8">
+      <div class="flex flex-wrap justify-between items-center gap-2 border-b border-gray-800 pb-4 mb-6">
+        <div>
+          <span id="t-id" class="text-xs bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded font-bold">ORDER #HZ-101</span>
+          <h1 id="t-user" class="text-2xl font-bold text-white mt-2">Yu***18</h1>
+          <p id="t-pkg" class="text-sm text-emerald-400">Anime Adventures • Summer Hunt 1 วัน</p>
+        </div>
+        <div class="text-right">
+          <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-full text-xs text-emerald-400 font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> กำลังออนไลน์ฟาร์ม
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="mb-6">
+        <div class="flex justify-between text-sm font-bold mb-2">
+          <span class="text-gray-300">ความคืบหน้าโดยรวม</span>
+          <span id="t-pct" class="text-emerald-400 text-xl">39%</span>
+        </div>
+        <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden p-0.5">
+          <div id="t-bar" class="bg-gradient-to-r from-emerald-500 to-teal-300 h-3 rounded-full transition-all duration-700" style="width: 39%"></div>
+        </div>
+        <p id="t-status" class="text-xs text-gray-400 mt-2">สถานะปัจจุบัน: กำลังลงด่าน Summer Hunt อัตโนมัติ</p>
+      </div>
+
+      <!-- Details Grid -->
+      <div class="grid grid-cols-3 gap-3 text-center mb-6">
+        <div class="bg-black/40 border border-gray-800 rounded-xl p-3">
+          <div class="text-xs text-gray-400">ยอดเริ่มต้น</div>
+          <div id="t-start" class="text-sm font-bold text-white mt-1">12,400 เพชร</div>
+        </div>
+        <div class="bg-black/40 border border-emerald-800/50 rounded-xl p-3">
+          <div class="text-xs text-emerald-400">ยอดปัจจุบัน</div>
+          <div id="t-curr" class="text-sm font-bold text-emerald-400 mt-1">31,900 เพชร</div>
+        </div>
+        <div class="bg-black/40 border border-gray-800 rounded-xl p-3">
+          <div class="text-xs text-gray-400">เป้าหมาย</div>
+          <div id="t-goal" class="text-sm font-bold text-white mt-1">60,000 เพชร</div>
+        </div>
+      </div>
+
+      <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-xs text-amber-300">
+        ⚠️ <b>ข้อควรระวัง:</b> กรุณางดเข้าล็อกอินไอดีซ้อนระหว่างที่สถานะขึ้น "กำลังออนไลน์ฟาร์ม" เพื่อป้องกันบอทหลุดจากเซิร์ฟเวอร์
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const defaultJobs = [
+      { id: "HZ-101", game: "Anime Adventures", user: "Yu***18", pkg: "Summer Hunt 1 วัน", pct: 39, start: "12,400 เพชร", current: "31,900 เพชร", goal: "60,000 เพชร", status: "กำลังลงด่าน Summer Hunt อัตโนมัติ" },
+      { id: "HZ-102", game: "Anime Adventures", user: "Ha***er", pkg: "Gem 30k (3 วัน)", pct: 78, start: "5,000 เพชร", current: "28,400 เพชร", goal: "35,000 เพชร", status: "กำลังฟาร์ม Infinite Mode" }
+    ];
+    const params = new URLSearchParams(window.location.search);
+    const idx = parseInt(params.get("id")) || 0;
+    const jobs = JSON.parse(localStorage.getItem("hazera_jobs")) || defaultJobs;
+    const job = jobs[idx] || jobs[0];
+
+    document.getElementById("t-id").innerText = "ORDER #" + job.id;
+    document.getElementById("t-user").innerText = job.user;
+    document.getElementById("t-pkg").innerText = job.game + " • " + job.pkg;
+    document.getElementById("t-pct").innerText = job.pct + "%";
+    document.getElementById("t-bar").style.width = job.pct + "%";
+    document.getElementById("t-status").innerText = "สถานะปัจจุบัน: " + job.status;
+    document.getElementById("t-start").innerText = job.start;
+    document.getElementById("t-curr").innerText = job.current;
+    document.getElementById("t-goal").innerText = job.goal;
+  </script>
+</body>
+</html>
